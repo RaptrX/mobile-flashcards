@@ -10,11 +10,11 @@ A scheduled notification is shown everyday at 16:30 if the user hasn't attempted
 
 ## Installation
 
-You need to have npm/yarn installed
-Cloning or download the project
-Extract and cd to the project folder
-Run ```yarn install```
-Run ```yarn start``` or ```expo start```
+- You need to have npm/yarn installed
+- Cloning or download the project
+- Extract and cd to the project folder
+- Run ```yarn install```
+- Run ```yarn start``` or ```expo start```
 
 ### Decks
 
