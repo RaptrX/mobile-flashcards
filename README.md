@@ -1,6 +1,6 @@
 # Udacity ReactND Project - Mobile Flashcards
 
-This app is the final project required for the Udacity React Nanodegree program, it has been tested on a Samsung S10.
+This app is the final project required for the Udacity React Nanodegree program.
 
 The app is similar to typical index cards used for studying, except a digitized version. It allows the user to new create decks and add cards to existing deks. Each deck contains a set of cards with a question and an answer. 
 
@@ -15,6 +15,10 @@ A scheduled notification is shown everyday at 16:30 if the user hasn't attempted
 - Extract and cd to the project folder
 - Run ```yarn install```
 - Run ```yarn start``` or ```expo start```
+
+### Testing
+
+I have tested the app on a on a Samsung Galaxy S10.
 
 ### Decks
 
