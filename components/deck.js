@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Alert, View, StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { SafeAreaView, Alert, View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
 import { white, voodoo_blue, mediumGrey } from '../utils/colors'
@@ -36,7 +36,7 @@ class Deck extends Component {
     }
 
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <View>
           <Text style={styles.heading}>{deck.title}</Text>
           <View style={{height:1, borderColor: voodoo_blue, borderWidth: 1, margin: 16}}/>
@@ -56,7 +56,7 @@ class Deck extends Component {
             <Text style={styles.buttonText}>START QUIZ</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, View, StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { white, voodoo_blue, mediumGrey, red, lizard_green } from '../utils/colors'
 import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
@@ -28,8 +28,6 @@ class Quiz extends Component {
       currentQuestionId: currState.currentQuestionId + 1,
       shouldShowQuestion: true
     }))
-
-    clearLocalNotification().then(setLocalNotification())
   }
 
   render() {
@@ -51,6 +49,10 @@ class Quiz extends Component {
       )
     }
 
+    if (currentQuestionId === deck.questions.length){
+      clearLocalNotification().then(setLocalNotification())
+    }
+
     return(
       <View style={{flex: 1}}>
       {currentQuestionId !== deck.questions.length ?
@@ -65,7 +67,7 @@ class Quiz extends Component {
             {
               shouldShowQuestion === true ?
               (
-                <Text style={{fontSize: 24, alignSelf: 'center', textAlign: 'center'}}>{card.question}</Text>
+                <Text style={styles.heading}>{card.question}</Text>
               ) : (
                 <Text style={{fontSize: 18, alignSelf: 'center', textAlign: 'center'}}>{card.answer}</Text>
               )
@@ -95,7 +97,7 @@ class Quiz extends Component {
               <Text style={{fontSize: 18, alignSelf: 'center'}}>Total questions {deck.questions.length}</Text>
               <View style={{height:1, borderColor: voodoo_blue, borderWidth: 1, margin: 16}}/>
               <View style={styles.card}>
-                <Text style={{fontSize: 24, alignSelf: 'center', textAlign: 'center'}}>You scored</Text>
+                <Text style={styles.heading}>You scored</Text>
                 <Text style={{fontSize: 48, alignSelf: 'center', textAlign: 'center'}}>{finalScore}%</Text>
               </View>
               <View style={styles.buttonBox}>
@@ -174,5 +176,10 @@ export const styles = StyleSheet.create({
     color: 'black',
     fontSize: 20,
     textAlign: 'center'
+  },
+  heading:{
+    fontSize: 24,
+    alignSelf: 'center',
+    textAlign: 'center',
   },
 });

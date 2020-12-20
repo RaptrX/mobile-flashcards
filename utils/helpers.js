@@ -1,5 +1,5 @@
 import { AsyncStorage } from 'react-native'
-import { Notifications } from 'expo'
+import * as Notifications from 'expo-notifications'
 import * as Permissions from 'expo-permissions'
 
 const NOTIFICATION_KEY = 'mobile-flashcards-notify'
@@ -102,18 +102,29 @@ export function setLocalNotification() {
       if(data === null){
         Permissions.askAsync(Permissions.NOTIFICATIONS).then((status) => {
           if (status === 'granted'){
+
             Notifications.cancelAllScheduledNotificationsAsync()
-            let tomorrow = new Date()
-            tomorrow.setDate(tomorrow.getDate() + 1)
-            tomorrow.setHours(16)
-            tomorrow.setMinutes(30)
-            Notifications.scheduleLocalNotificationAsync(
-              createNotification(),
-              {
-                time:tomorrow,
-                repeat:'day',
+
+            Notifications.setNotificationHandler({
+              handleNotification: async () => ({
+                shouldShowAlert: true,
+                shouldPlaySound: true,
+                shouldSetBadge: false,
+              }),
+            });
+
+            Notifications.scheduleNotificationAsync({
+              content: {
+                title: 'Time to study',
+                body: '📖 You have not studied today'
+              },
+              trigger: {
+                hour: 18,
+                minute: 30,
+                repeats: true
               }
-            )
+            })
+
             AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true))
           }
         })
